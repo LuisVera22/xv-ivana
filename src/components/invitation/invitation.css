@@ -33,13 +33,16 @@
   flex-direction: column;
   align-items: center;
   padding: 0.5rem;
-  background: #ceced0;
+  background: #1b1b1b;
+}
+
+.invite-page > section {
+  margin: 0;
 }
 
 .invite-card {
   width: min(100%, 420px);
   color: #efe9d8;
-  border: 1px solid rgba(255, 255, 255, 0.75);
   background:
     radial-gradient(circle at 20% 14%, rgba(189, 145, 69, 0.25), transparent 35%),
     radial-gradient(circle at 83% 17%, rgba(255, 255, 255, 0.06), transparent 28%),
