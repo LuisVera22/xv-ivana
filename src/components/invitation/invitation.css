@@ -356,6 +356,11 @@
   color: #cccccf;
 }
 
+.contact-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .whatsapp-icon {
   width: 20px;
   height: 20px;

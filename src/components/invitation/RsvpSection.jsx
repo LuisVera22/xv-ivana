@@ -20,13 +20,19 @@ export function RsvpSection({ title, contacts }) {
       <h2>{title}</h2>
       <div className="contacts">
         {contacts.map((contact) => (
-          <article className="contact-item" key={contact.phone}>
+          <a
+            className="contact-item contact-link"
+            key={contact.phone}
+            href={contact.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <WhatsAppIcon />
             <p>
               {contact.name}
               <span>{contact.phone}</span>
             </p>
-          </article>
+          </a>
         ))}
       </div>
     </section>
