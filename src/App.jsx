@@ -1,34 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { invitationData } from './data/invitationData'
+import { useCountdown } from './hooks/useCountdown'
+import { CountdownSection } from './components/invitation/CountdownSection'
+import { HeroSection } from './components/invitation/HeroSection'
+import { LocationSection } from './components/invitation/LocationSection'
+import { RsvpSection } from './components/invitation/RsvpSection'
+import './components/invitation/invitation.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const timeLeft = useCountdown(invitationData.countdown.targetDate)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main className="invite-page">
+      <section className="invite-card" aria-label="Invitacion de quinceanero">
+        <HeroSection
+          date={invitationData.event.dateDisplay}
+          name={invitationData.event.name}
+          message={invitationData.event.message}
+        />
+        <CountdownSection title={invitationData.countdown.title} timeLeft={timeLeft} />
+        <LocationSection
+          title={invitationData.location.title}
+          venue={invitationData.location.venue}
+          address={invitationData.location.address}
+        />
+      </section>
+
+      <section className="mockup-gap-light" aria-hidden="true" />
+      <section className="mockup-gap-dark" aria-hidden="true" />
+
+      <RsvpSection title={invitationData.rsvp.title} contacts={invitationData.rsvp.contacts} />
+    </main>
   )
 }
 

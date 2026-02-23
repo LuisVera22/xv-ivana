@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Italianno&family=Montserrat:wght@300;400;500&display=swap');
+
+#root {
+  width: 100%;
+}
+
+:root {
+  --fs-event-date: clamp(0.82rem, 2.1vw, 1rem);
+  --fs-name: clamp(4.3rem, 13.5vw, 5.9rem);
+  --fs-message: clamp(0.64rem, 1.6vw, 0.74rem);
+  --fs-section-title: clamp(1.88rem, 5.6vw, 2.18rem);
+  --fs-countdown: clamp(2.2rem, 9.8vw, 2.95rem);
+  --fs-venue: clamp(1.44rem, 4.7vw, 1.82rem);
+  --fs-address: clamp(0.54rem, 1.45vw, 0.62rem);
+  --fs-rsvp-title: clamp(2rem, 5.6vw, 2.4rem);
+  --fs-contact-name: clamp(1.18rem, 3.3vw, 1.5rem);
+  --fs-contact-phone: clamp(0.72rem, 1.9vw, 0.84rem);
+  --lh-tight: 1;
+  --lh-compact: 1.2;
+  --lh-body: 1.35;
+}
+
+.invite-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  background: #ceced0;
+}
+
+.invite-card {
+  width: min(100%, 420px);
+  color: #efe9d8;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background:
+    radial-gradient(circle at 20% 14%, rgba(189, 145, 69, 0.25), transparent 35%),
+    radial-gradient(circle at 83% 17%, rgba(255, 255, 255, 0.06), transparent 28%),
+    linear-gradient(180deg, #131313 0%, #030303 100%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.hero {
+  text-align: center;
+  padding: 2.2rem 1.5rem 1.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.event-date {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  color: #c9a24f;
+  letter-spacing: 0.09em;
+  font-size: var(--fs-event-date);
+  line-height: var(--lh-compact);
+  padding-bottom: 0.35rem;
+  display: inline-block;
+  width: min(100%, 245px);
+  border-bottom: 1px solid rgba(201, 162, 79, 0.82);
+}
+
+.name {
+  margin: 0.45rem 0 0.45rem;
+  font-family: 'Italianno', cursive;
+  line-height: 0.9;
+  font-weight: 400;
+  font-size: var(--fs-name);
+  color: #f1eee7;
+}
+
+.message {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--fs-message);
+  line-height: var(--lh-body);
+  color: rgba(241, 236, 226, 0.9);
+}
+
+.countdown-section {
+  text-align: center;
+  padding: 1.6rem 1.2rem 1.15rem;
+}
+
+.section-title,
+.location-section h2,
+.rsvp-section h2 {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+}
+
+.section-title {
+  font-size: var(--fs-section-title);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.06em;
+}
+
+.countdown {
+  margin-top: 0.35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.18rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--fs-countdown);
+  line-height: var(--lh-tight);
+  color: #dadad8;
+}
+
+.separator {
+  opacity: 0.68;
+}
+
+.countdown-section::after {
+  content: '';
+  display: block;
+  width: 34px;
+  height: 34px;
+  margin: 0.95rem auto 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 35%, rgba(255, 255, 255, 0.78), transparent 40%),
+    radial-gradient(circle at 62% 62%, rgba(210, 210, 210, 0.68), transparent 42%),
+    linear-gradient(135deg, #898989, #292929);
+  opacity: 0.75;
+}
+
+.location-section {
+  text-align: center;
+  padding: 0.8rem 1.2rem 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.location-section h2 {
+  display: inline-block;
+  font-size: var(--fs-section-title);
+  line-height: var(--lh-tight);
+  color: #d0b169;
+  letter-spacing: 0.05em;
+  padding: 0.08rem 1rem 0.24rem;
+  border-top: 1px solid rgba(201, 162, 79, 0.88);
+  border-bottom: 1px solid rgba(201, 162, 79, 0.88);
+}
+
+.venue {
+  margin: 0.72rem 0 0.18rem;
+  font-family: 'Cinzel', serif;
+  font-size: var(--fs-venue);
+  line-height: var(--lh-compact);
+}
+
+.address {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--fs-address);
+  line-height: var(--lh-body);
+  color: rgba(237, 233, 224, 0.86);
+}
+
+.mockup-gap-light {
+  width: min(100%, 420px);
+  height: 158px;
+  background: #cbcbcd;
+}
+
+.mockup-gap-dark {
+  width: min(100%, 420px);
+  height: 310px;
+  background: #000;
+}
+
+.rsvp-section {
+  width: min(100%, 420px);
+  background: #e5e4e7;
+  color: #302b2b;
+  text-align: center;
+  padding: 1.6rem 1rem 2rem;
+}
+
+.rsvp-section h2 {
+  display: inline-block;
+  color: #3a3434;
+  font-size: var(--fs-rsvp-title);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.03em;
+  border-top: 2px solid #c3a04f;
+  border-bottom: 2px solid #c3a04f;
+  padding: 0.24rem 1.15rem;
+}
+
+.contacts {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 3.4rem;
+}
+
+.contacts p {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-size: var(--fs-contact-name);
+  line-height: var(--lh-compact);
+}
+
+.contacts span {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: var(--fs-contact-phone);
+  line-height: var(--lh-compact);
+  font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: 480px) {
+  .invite-page {
+    padding: 0.25rem;
+  }
+
+  .contacts {
+    gap: 1.6rem;
+  }
+}
