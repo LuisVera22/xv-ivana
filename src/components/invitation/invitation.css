@@ -1,23 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Italianno&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@400&family=Allura&family=Cinzel:wght@400;500;600&family=Italianno&family=Montserrat:wght@300;400;500&display=swap');
 
 #root {
   width: 100%;
 }
 
 :root {
-  --fs-event-date: clamp(0.82rem, 2.1vw, 1rem);
-  --fs-name: clamp(4.3rem, 13.5vw, 5.9rem);
-  --fs-message: clamp(0.64rem, 1.6vw, 0.74rem);
-  --fs-section-title: clamp(1.88rem, 5.6vw, 2.18rem);
-  --fs-countdown: clamp(2.2rem, 9.8vw, 2.95rem);
-  --fs-venue: clamp(1.44rem, 4.7vw, 1.82rem);
-  --fs-address: clamp(0.54rem, 1.45vw, 0.62rem);
-  --fs-rsvp-title: clamp(2rem, 5.6vw, 2.4rem);
-  --fs-contact-name: clamp(1.18rem, 3.3vw, 1.5rem);
-  --fs-contact-phone: clamp(0.72rem, 1.9vw, 0.84rem);
+  --fs-event-date: 16px;
+  --fs-name: 70px;
+  --fs-message: 7px;
+  --name-block-width: 210px;
+  --message-block-width: 170px;
+  --fs-section-title: 14px;
+  --fs-countdown: 30px;
+  --fs-venue: 10px;
+  --fs-address: 7px;
+  --fs-rsvp-title: 14px;
+  --fs-contact-name: 11px;
+  --fs-contact-phone: 8px;
+  --fs-dress-title: 14px;
+  --fs-dress-label: 11px;
+  --fs-dress-note: clamp(0.52rem, 1.4vw, 0.62rem);
   --lh-tight: 1;
   --lh-compact: 1.2;
   --lh-body: 1.35;
+  --ornament-start: #d4af37;
+  --ornament-end: #b8860b;
 }
 
 .invite-page {
@@ -48,32 +55,51 @@
 
 .event-date {
   margin: 0;
-  font-family: 'Cinzel', serif;
-  color: #c9a24f;
+  font-family: 'Alegreya', serif;
+  color: #ffffff;
   letter-spacing: 0.09em;
   font-size: var(--fs-event-date);
   line-height: var(--lh-compact);
   padding-bottom: 0.35rem;
   display: inline-block;
-  width: min(100%, 245px);
-  border-bottom: 1px solid rgba(201, 162, 79, 0.82);
+  width: min(100%, var(--name-block-width));
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, var(--ornament-start) 0%, var(--ornament-end) 100%) 1;
 }
 
 .name {
   margin: 0.45rem 0 0.45rem;
-  font-family: 'Italianno', cursive;
+  font-family: 'Allura', cursive;
   line-height: 0.9;
   font-weight: 400;
   font-size: var(--fs-name);
   color: #f1eee7;
+  width: var(--name-block-width);
+  margin-inline: auto;
+  position: relative;
+  padding-bottom: 0.22rem;
+}
+
+.name::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, var(--ornament-start) 0%, var(--ornament-end) 100%) 1;
 }
 
 .message {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Alegreya', serif;
   font-size: var(--fs-message);
   line-height: var(--lh-body);
   color: rgba(241, 236, 226, 0.9);
+  width: min(100%, var(--message-block-width));
+  max-width: 100%;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .countdown-section {
@@ -85,14 +111,37 @@
 .location-section h2,
 .rsvp-section h2 {
   margin: 0;
-  font-family: 'Cinzel', serif;
-  font-weight: 500;
+  font-family: 'Alegreya', serif;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.location-section h2,
+.dress-section h2,
+.rsvp-section h2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.location-section h2::before,
+.location-section h2::after,
+.dress-section h2::before,
+.dress-section h2::after,
+.rsvp-section h2::before,
+.rsvp-section h2::after {
+  content: '';
+  width: 122px;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, var(--ornament-start) 0%, var(--ornament-end) 100%) 1;
 }
 
 .section-title {
   font-size: var(--fs-section-title);
-  line-height: var(--lh-tight);
-  letter-spacing: 0.06em;
 }
 
 .countdown {
@@ -132,14 +181,9 @@
 }
 
 .location-section h2 {
-  display: inline-block;
   font-size: var(--fs-section-title);
-  line-height: var(--lh-tight);
-  color: #d0b169;
-  letter-spacing: 0.05em;
-  padding: 0.08rem 1rem 0.24rem;
-  border-top: 1px solid rgba(201, 162, 79, 0.88);
-  border-bottom: 1px solid rgba(201, 162, 79, 0.88);
+  color: rgba(255, 255, 255, 0.78);
+  padding: 0;
 }
 
 .venue {
@@ -147,6 +191,7 @@
   font-family: 'Cinzel', serif;
   font-size: var(--fs-venue);
   line-height: var(--lh-compact);
+  color: #ffffff;
 }
 
 .address {
@@ -154,7 +199,7 @@
   font-family: 'Montserrat', sans-serif;
   font-size: var(--fs-address);
   line-height: var(--lh-body);
-  color: rgba(237, 233, 224, 0.86);
+  color: #ffffff;
 }
 
 .mockup-gap-light {
@@ -163,36 +208,116 @@
   background: #cbcbcd;
 }
 
-.mockup-gap-dark {
+.dress-section {
   width: min(100%, 420px);
-  height: 310px;
-  background: #000;
+  background: #ffffff;
+  color: #111111;
+  padding: 0.78rem 1rem 0.85rem;
+  border-top: 12px solid #010101;
+}
+
+.dress-section h2 {
+  margin: 0 auto;
+  font-family: 'Alegreya', serif;
+  font-weight: 400;
+  font-size: var(--fs-dress-title);
+  line-height: 1;
+  letter-spacing: 0;
+  color: #111111;
+  padding: 0;
+}
+
+.dress-columns {
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dress-columns p {
+  margin: 0;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: var(--fs-dress-label);
+  line-height: var(--lh-compact);
+  font-weight: 600;
+  color: #111111;
+}
+
+.dress-not-allowed {
+  margin-top: 0.7rem;
+  width: 50%;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dress-not-allowed p {
+  margin: 0;
+  font-family: 'Alegreya', serif;
+  font-size: var(--fs-dress-note);
+  line-height: var(--lh-compact);
+  font-style: italic;
+  color: #111111;
+}
+
+.dress-swatches {
+  display: flex;
+  align-items: center;
+  margin-top: 0.26rem;
+}
+
+.dress-swatches span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.swatch-gold {
+  background: #aa8533;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.swatch-black {
+  background: #020202;
+  margin-left: -4px;
 }
 
 .rsvp-section {
   width: min(100%, 420px);
-  background: #e5e4e7;
-  color: #302b2b;
+  min-height: 285px;
+  background:
+    radial-gradient(circle at 30% 118%, rgba(228, 180, 78, 0.6), transparent 22%),
+    radial-gradient(circle at 48% 120%, rgba(228, 180, 78, 0.36), transparent 23%),
+    radial-gradient(circle at 65% 122%, rgba(228, 180, 78, 0.4), transparent 22%),
+    linear-gradient(180deg, #000 0%, #000 72%, #090909 100%);
+  color: #d9d9d9;
   text-align: center;
-  padding: 1.6rem 1rem 2rem;
+  padding: 7.7rem 1rem 1.65rem;
 }
 
 .rsvp-section h2 {
-  display: inline-block;
-  color: #3a3434;
+  color: rgba(255, 255, 255, 0.78);
   font-size: var(--fs-rsvp-title);
-  line-height: var(--lh-tight);
-  letter-spacing: 0.03em;
-  border-top: 2px solid #c3a04f;
-  border-bottom: 2px solid #c3a04f;
-  padding: 0.24rem 1.15rem;
+  line-height: 1;
+  letter-spacing: 0;
+  padding: 0;
 }
 
 .contacts {
-  margin-top: 1rem;
+  margin-top: 0.95rem;
   display: flex;
   justify-content: center;
-  gap: 3.4rem;
+  gap: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 132px;
 }
 
 .contacts p {
@@ -200,14 +325,24 @@
   font-family: 'Cinzel', serif;
   font-size: var(--fs-contact-name);
   line-height: var(--lh-compact);
+  color: #d8d8dc;
+  text-align: center;
 }
 
 .contacts span {
   display: block;
-  margin-top: 0.1rem;
+  margin-top: 0.06rem;
   font-size: var(--fs-contact-phone);
   line-height: var(--lh-compact);
   font-family: 'Montserrat', sans-serif;
+  color: #cccccf;
+}
+
+.whatsapp-icon {
+  width: 20px;
+  height: 20px;
+  color: #f2f2f2;
+  flex-shrink: 0;
 }
 
 @media (max-width: 480px) {
@@ -215,7 +350,25 @@
     padding: 0.25rem;
   }
 
+  .dress-section {
+    padding: 1rem 0.8rem;
+  }
+
+  .dress-not-allowed {
+    width: 50%;
+    margin-left: 0;
+  }
+
+  .rsvp-section {
+    min-height: 255px;
+    padding-top: 6.8rem;
+  }
+
   .contacts {
-    gap: 1.6rem;
+    gap: 0.9rem;
+  }
+
+  .contact-item {
+    min-width: 122px;
   }
 }

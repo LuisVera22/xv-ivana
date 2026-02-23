@@ -1,6 +1,7 @@
 import { invitationData } from './data/invitationData'
 import { useCountdown } from './hooks/useCountdown'
 import { CountdownSection } from './components/invitation/CountdownSection'
+import { DressCodeSection } from './components/invitation/DressCodeSection'
 import { HeroSection } from './components/invitation/HeroSection'
 import { LocationSection } from './components/invitation/LocationSection'
 import { RsvpSection } from './components/invitation/RsvpSection'
@@ -26,7 +27,12 @@ function App() {
       </section>
 
       <section className="mockup-gap-light" aria-hidden="true" />
-      <section className="mockup-gap-dark" aria-hidden="true" />
+
+      <DressCodeSection
+        title={invitationData.dressCode.title}
+        labels={invitationData.dressCode.labels}
+        forbidden={invitationData.dressCode.forbidden}
+      />
 
       <RsvpSection title={invitationData.rsvp.title} contacts={invitationData.rsvp.contacts} />
     </main>

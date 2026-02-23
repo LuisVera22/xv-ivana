@@ -3,16 +3,24 @@ export const invitationData = {
     dateDisplay: '25.04.2026',
     name: 'Ivana',
     message:
-      'Te espero para compartir la alegria de esta noche que sera para mi magica, inolvidable y unica.',
+      'Te espero para compartir la alegria de esa noche que será para mi mágica, inolvidable y única.',
   },
   countdown: {
     title: 'FALTAN',
     targetDate: '2026-04-24T00:00:00',
   },
   location: {
-    title: 'UBICACION',
+    title: 'UBICACIÓN',
     venue: 'Circulo Militar de Salaverry,',
-    address: 'Jiron Pachacutec s/n, C. Ayacucho Heredia, Jesus Maria 15072',
+    address: 'Jirón Pachacutec s/n, C. Ayacucho Heredia, Jesus Maria 15072',
+  },
+  dressCode: {
+    title: 'DRESS CODE',
+    labels: {
+      ladies: 'Damas',
+      gentlemen: 'Caballeros',
+    },
+    forbidden: 'No permitido',
   },
   rsvp: {
     title: 'CONFIRMAR ASISTENCIA',
