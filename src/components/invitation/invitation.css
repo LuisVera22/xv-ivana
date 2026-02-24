@@ -5,21 +5,22 @@
 }
 
 :root {
-  --fs-event-date: 16px;
-  --fs-name: 70px;
-  --fs-message: 7px;
-  --name-block-width: 210px;
-  --message-block-width: 170px;
-  --fs-section-title: 14px;
-  --fs-countdown: 30px;
-  --fs-venue: 10px;
-  --fs-address: 7px;
-  --fs-rsvp-title: 14px;
-  --fs-contact-name: 11px;
-  --fs-contact-phone: 8px;
-  --fs-dress-title: 14px;
-  --fs-dress-label: 11px;
-  --fs-dress-note: clamp(0.52rem, 1.4vw, 0.62rem);
+  --layout-max: 420px;
+  --fs-event-date: clamp(14px, 2.2vw, 18px);
+  --fs-name: clamp(58px, 10vw, 92px);
+  --fs-message: clamp(8px, 1.4vw, 12px);
+  --name-block-width: clamp(210px, 34vw, 320px);
+  --message-block-width: clamp(170px, 30vw, 280px);
+  --fs-section-title: clamp(14px, 2.1vw, 20px);
+  --fs-countdown: clamp(30px, 7vw, 56px);
+  --fs-venue: clamp(10px, 1.8vw, 14px);
+  --fs-address: clamp(7px, 1.2vw, 10px);
+  --fs-rsvp-title: clamp(14px, 2.1vw, 20px);
+  --fs-contact-name: clamp(11px, 1.9vw, 16px);
+  --fs-contact-phone: clamp(8px, 1.4vw, 11px);
+  --fs-dress-title: clamp(14px, 2.1vw, 20px);
+  --fs-dress-label: clamp(11px, 1.8vw, 15px);
+  --fs-dress-note: clamp(8px, 1.2vw, 10px);
   --lh-tight: 1;
   --lh-compact: 1.2;
   --lh-body: 1.35;
@@ -41,7 +42,7 @@
 }
 
 .invite-card {
-  width: min(100%, 420px);
+  width: min(100%, var(--layout-max));
   color: #efe9d8;
   background:
     radial-gradient(circle at 20% 14%, rgba(189, 145, 69, 0.25), transparent 35%),
@@ -138,7 +139,7 @@
 .rsvp-section h2::before,
 .rsvp-section h2::after {
   content: '';
-  width: 122px;
+  width: clamp(122px, 19vw, 170px);
   border-top: 1px solid transparent;
   border-image: linear-gradient(90deg, var(--ornament-start) 0%, var(--ornament-end) 100%) 1;
 }
@@ -155,8 +156,8 @@
 }
 
 .countdown-item {
-  min-width: 54px;
-  padding: 0 4px;
+  min-width: clamp(54px, 8.5vw, 72px);
+  padding: 0 clamp(4px, 0.8vw, 8px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -173,7 +174,7 @@
 .countdown-label {
   margin-top: 0.15rem;
   font-family: 'Alegreya', serif;
-  font-size: 12px;
+  font-size: clamp(12px, 1.8vw, 16px);
   line-height: 1;
   color: #ffffff;
 }
@@ -221,13 +222,13 @@
 }
 
 .mockup-gap-light {
-  width: min(100%, 420px);
+  width: min(100%, var(--layout-max));
   height: 158px;
   background: #cbcbcd;
 }
 
 .dress-section {
-  width: min(100%, 420px);
+  width: min(100%, var(--layout-max));
   background: #ffffff;
   color: #111111;
   padding: 0.78rem 1rem 0.85rem;
@@ -303,7 +304,7 @@
 }
 
 .rsvp-section {
-  width: min(100%, 420px);
+  width: min(100%, var(--layout-max));
   min-height: 285px;
   background:
     radial-gradient(circle at 30% 118%, rgba(228, 180, 78, 0.6), transparent 22%),
@@ -393,5 +394,21 @@
 
   .contact-item {
     min-width: 122px;
+  }
+}
+
+@media (min-width: 481px) {
+  :root {
+    --layout-max: 680px;
+  }
+
+  .invite-page {
+    padding: 0.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --layout-max: 760px;
   }
 }
