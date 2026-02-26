@@ -7,7 +7,7 @@ export const invitationData = {
   },
   countdown: {
     title: 'FALTAN',
-    targetDate: '2026-04-24T00:00:00',
+    targetDate: '2026-04-24T20:00:00-05:00',
   },
   location: {
     title: 'UBICACIÓN',
