@@ -12,11 +12,12 @@
   --name-block-width: clamp(210px, 34vw, 320px);
   --message-block-width: clamp(170px, 30vw, 280px);
   --fs-section-title: clamp(14px, 2.1vw, 20px);
+  --hero-ornament-width: var(--name-block-width);
   --fs-countdown: clamp(30px, 7vw, 56px);
   --fs-venue: clamp(10px, 1.8vw, 14px);
   --fs-address: clamp(7px, 1.2vw, 10px);
   --fs-rsvp-title: clamp(14px, 2.1vw, 20px);
-  --fs-contact-name: clamp(11px, 1.9vw, 16px);
+  --fs-contact-name: clamp(11px, 1.9vw, 14px);
   --fs-contact-phone: clamp(8px, 1.4vw, 11px);
   --fs-dress-title: clamp(14px, 2.1vw, 20px);
   --fs-dress-label: clamp(11px, 1.8vw, 15px);
@@ -45,43 +46,67 @@
   width: min(100%, var(--layout-max));
   color: #efe9d8;
   background:
-    radial-gradient(circle at 20% 14%, rgba(189, 145, 69, 0.25), transparent 35%),
-    radial-gradient(circle at 83% 17%, rgba(255, 255, 255, 0.06), transparent 28%),
-    linear-gradient(180deg, #131313 0%, #030303 100%);
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.119) 0%,
+      rgba(0, 0, 0, 0.567) 56%,
+      rgba(0, 0, 0, 0.88) 84%,
+      #000000 100%
+    ),
+    url('/img/background.jpeg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
 .hero {
   text-align: center;
-  padding: 2.2rem 1.5rem 1.8rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2.8rem 1.5rem 2.2rem;
+  min-height: clamp(340px, 52vw, 480px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.581) 34%,
+      rgba(0, 0, 0, 0.826) 100%
+    ),
+    url('/img/mask-1.jpeg');
+  background-size: cover;
+  background-position: center 58%;
+  background-repeat: no-repeat;
 }
 
 .event-date {
-  margin: 0;
+  margin: 0 auto;
   font-family: 'Alegreya', serif;
   color: #ffffff;
   letter-spacing: 0.09em;
   font-size: var(--fs-event-date);
   line-height: var(--lh-compact);
-  padding-bottom: 0.35rem;
+  padding-bottom: 0.5rem;
   display: inline-block;
-  width: min(100%, var(--name-block-width));
+  width: min(100%, var(--hero-ornament-width));
   border-bottom: 1px solid transparent;
   border-image: linear-gradient(90deg, var(--ornament-start) 0%, var(--ornament-end) 100%) 1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
 }
 
 .name {
-  margin: 0.45rem 0 0.45rem;
+  margin: 0.65rem 0 0.55rem;
   font-family: 'Allura', cursive;
   line-height: 0.9;
   font-weight: 400;
   font-size: var(--fs-name);
   color: #f1eee7;
-  width: var(--name-block-width);
+  width: min(100%, var(--hero-ornament-width));
   margin-inline: auto;
   position: relative;
   padding-bottom: 0.22rem;
+  text-shadow: 0 4px 14px rgba(0, 0, 0, 0.62);
 }
 
 .name::after {
@@ -104,6 +129,7 @@
   max-width: 100%;
   margin-inline: auto;
   text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .countdown-section {
@@ -182,20 +208,17 @@
 .countdown-section::after {
   content: '';
   display: block;
-  width: 34px;
-  height: 34px;
-  margin: 0.95rem auto 0;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 35%, rgba(255, 255, 255, 0.78), transparent 40%),
-    radial-gradient(circle at 62% 62%, rgba(210, 210, 210, 0.68), transparent 42%),
-    linear-gradient(135deg, #898989, #292929);
-  opacity: 0.75;
+  width: clamp(70px, 11vw, 94px);
+  aspect-ratio: 1 / 1;
+  margin: 4rem auto 0;
+  background: url('/img/mask-2.png') center / contain no-repeat;
+  transform: rotate(-25deg);
+  opacity: 0.9;
 }
 
 .location-section {
   text-align: center;
-  padding: 0.8rem 1.2rem 1.2rem;
+  padding: 0.2rem 1.2rem 1.2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -323,10 +346,17 @@
   width: min(100%, var(--layout-max));
   min-height: 285px;
   background:
-    radial-gradient(circle at 30% 118%, rgba(228, 180, 78, 0.6), transparent 22%),
-    radial-gradient(circle at 48% 120%, rgba(228, 180, 78, 0.36), transparent 23%),
-    radial-gradient(circle at 65% 122%, rgba(228, 180, 78, 0.4), transparent 22%),
-    linear-gradient(180deg, #000 0%, #000 72%, #090909 100%);
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.98) 0%,
+      rgba(0, 0, 0, 0.95) 52%,
+      rgba(0, 0, 0, 0.8) 76%,
+      rgba(0, 0, 0, 0.45) 100%
+    ),
+    url('/img/background-02.jpeg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
   color: #d9d9d9;
   text-align: center;
   padding: 7.7rem 1rem 1.65rem;
@@ -359,6 +389,7 @@
   margin: 0;
   font-family: 'Cinzel', serif;
   font-size: var(--fs-contact-name);
+  font-weight: bold;
   line-height: var(--lh-compact);
   color: #d8d8dc;
   text-align: center;
