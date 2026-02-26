@@ -23,10 +23,9 @@ function App() {
           title={invitationData.location.title}
           venue={invitationData.location.venue}
           address={invitationData.location.address}
+          mapEmbedUrl={invitationData.location.mapEmbedUrl}
         />
       </section>
-
-      <section className="mockup-gap-light" aria-hidden="true" />
 
       <DressCodeSection
         title={invitationData.dressCode.title}

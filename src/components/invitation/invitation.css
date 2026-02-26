@@ -221,10 +221,26 @@
   color: #ffffff;
 }
 
-.mockup-gap-light {
-  width: min(100%, var(--layout-max));
-  height: 158px;
-  background: #cbcbcd;
+.map-frame {
+  position: relative;
+  width: min(100%, 65%);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  margin: 2rem auto 0;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.18);
+}
+
+.map-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
 }
 
 .dress-section {
