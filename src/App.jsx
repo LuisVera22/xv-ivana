@@ -17,6 +17,8 @@ function App() {
           date={invitationData.event.dateDisplay}
           name={invitationData.event.name}
           message={invitationData.event.message}
+          parents={invitationData.event.parents}
+          secondMessage={invitationData.event.secondMessage}
         />
         <CountdownSection title={invitationData.countdown.title} timeLeft={timeLeft} />
         <LocationSection
