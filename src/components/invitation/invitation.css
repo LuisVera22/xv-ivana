@@ -23,7 +23,7 @@
   --fs-dress-label: clamp(11px, 1.8vw, 15px);
   --fs-dress-note: clamp(8px, 1.2vw, 10px);
   --lh-tight: 1;
-  --lh-compact: 1.2;
+  --lh-compact: ;
   --lh-body: 1.35;
   --ornament-start: #d4af37;
   --ornament-end: #b8860b;
@@ -292,13 +292,16 @@
   padding: 0;
 }
 
-.dress-columns {
-  margin-top: 0.5rem;
+.dress-row {
+  margin: 0.65rem auto 0;
+  width: min(100%, 440px);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: 0.3rem;
 }
 
-.dress-columns p {
+.dress-row p {
   margin: 0;
   text-align: center;
   font-family: 'Cinzel', serif;
@@ -308,39 +311,32 @@
   color: #111111;
 }
 
-.dress-not-allowed {
-  margin-top: 0.7rem;
-  width: 50%;
-  margin-left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.dress-forbidden {
+  font-weight: 600;
+  color: #111111;
 }
 
-.dress-not-allowed p {
-  margin: 0;
-  font-family: 'Alegreya', serif;
-  font-size: var(--fs-dress-note);
-  line-height: var(--lh-compact);
-  font-style: italic;
-  color: #111111;
+.dress-not-allowed {
+  margin-top: 0.6rem;
+  display: flex;
+  justify-content: center;
 }
 
 .dress-swatches {
   display: flex;
   align-items: center;
-  margin-top: 0.26rem;
+  margin-top: 0;
 }
 
 .dress-swatches span {
-  width: 16px;
-  height: 16px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: inline-block;
 }
 
 .swatch-gold {
-  background: #aa8533;
+  background: var(--ornament-start);
   border: 1px solid rgba(0, 0, 0, 0.18);
 }
 
@@ -432,9 +428,8 @@
     padding: 1rem 0.8rem;
   }
 
-  .dress-not-allowed {
-    width: 50%;
-    margin-left: 0;
+  .dress-row {
+    width: min(100%, 360px);
   }
 
   .rsvp-section {
