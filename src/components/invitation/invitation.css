@@ -29,6 +29,71 @@
   --ornament-end: #b8860b;
 }
 
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at center, rgba(38, 38, 38, 0.56) 0%, rgba(8, 8, 8, 0.95) 70%),
+    #050505;
+  opacity: 1;
+  transition: opacity 420ms ease, visibility 420ms ease;
+}
+
+.page-loader.is-hiding {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page-loader__mark {
+  position: relative;
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+}
+
+.page-loader__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  border-top-color: rgba(212, 175, 55, 1);
+  animation: invitation-loader-spin 1.1s linear infinite;
+}
+
+.page-loader__heart {
+  width: 48px;
+  height: 48px;
+  display: block;
+  fill: #d4af37;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.35));
+  animation: invitation-loader-heartbeat 1.6s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes invitation-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes invitation-loader-heartbeat {
+  0%,
+  100% {
+    opacity: 0.82;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
 .invite-page {
   min-height: 100vh;
   display: flex;
@@ -443,6 +508,17 @@
 
   .contact-item {
     min-width: 122px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader {
+    transition: none;
+  }
+
+  .page-loader__ring,
+  .page-loader__heart {
+    animation: none;
   }
 }
 
