@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { invitationData } from './data/invitationData'
 import { useCountdown } from './hooks/useCountdown'
 import { CountdownSection } from './components/invitation/CountdownSection'
@@ -11,6 +11,8 @@ import './components/invitation/invitation.css'
 function App() {
   const [showLoader, setShowLoader] = useState(true)
   const [loaderVisible, setLoaderVisible] = useState(true)
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+  const audioRef = useRef(null)
   const timeLeft = useCountdown(invitationData.countdown.targetDate)
 
   useEffect(() => {
@@ -58,6 +60,57 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    const audioElement = audioRef.current
+
+    if (!audioElement) {
+      return
+    }
+
+    const tryAutoplay = async () => {
+      try {
+        await audioElement.play()
+        setIsMusicPlaying(true)
+      } catch {
+        setIsMusicPlaying(false)
+      }
+    }
+
+    tryAutoplay()
+  }, [])
+
+  const handleMusicToggle = async () => {
+    const audioElement = audioRef.current
+
+    if (!audioElement) {
+      return
+    }
+
+    if (isMusicPlaying) {
+      audioElement.pause()
+      return
+    }
+
+    try {
+      await audioElement.play()
+      setIsMusicPlaying(true)
+    } catch {
+      setIsMusicPlaying(false)
+    }
+  }
+
+  const handleMusicEnded = () => {
+    setIsMusicPlaying(false)
+  }
+
+  const handleMusicPlay = () => {
+    setIsMusicPlaying(true)
+  }
+
+  const handleMusicPause = () => {
+    setIsMusicPlaying(false)
+  }
+
   return (
     <>
       {showLoader && (
@@ -83,6 +136,26 @@ function App() {
 
       <main className="invite-page">
         <section className="invite-card" aria-label="Invitacion de quinceanero">
+          <button
+            type="button"
+            className={`music-toggle ${isMusicPlaying ? 'is-playing' : ''}`}
+            onClick={handleMusicToggle}
+            aria-pressed={isMusicPlaying}
+            aria-label={isMusicPlaying ? 'Pausar musica' : 'Reproducir musica'}
+          >
+            <span className="music-toggle__glow" aria-hidden="true" />
+            <span className="music-toggle__icon" aria-hidden="true">&#9835;</span>
+          </button>
+          <audio
+            ref={audioRef}
+            src="/music/Tusa (LetraLyrics) - Karol G, Nicki Minaj.mp3"
+            onPlay={handleMusicPlay}
+            onPause={handleMusicPause}
+            onEnded={handleMusicEnded}
+            preload="metadata"
+            loop
+            autoPlay
+          />
           <HeroSection
             date={invitationData.event.dateDisplay}
             name={invitationData.event.name}

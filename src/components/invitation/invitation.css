@@ -108,6 +108,7 @@
 }
 
 .invite-card {
+  position: relative;
   width: min(100%, var(--layout-max));
   color: #efe9d8;
   background:
@@ -123,6 +124,91 @@
   background-position: center top;
   background-repeat: no-repeat;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.music-toggle {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 20;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  overflow: visible;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.music-toggle:hover {
+  background: rgba(0, 0, 0, 0.65);
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.music-toggle:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+.music-toggle__icon {
+  font-size: 20px;
+  line-height: 1;
+  transform: translateY(-0.5px);
+  position: relative;
+  z-index: 2;
+}
+
+.music-toggle__glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.26);
+  opacity: 0;
+  transform: scale(0.9);
+  filter: blur(3px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.music-toggle.is-playing {
+  background: #d4af3740;
+  color: var(--ornament-start);
+}
+
+.music-toggle.is-playing .music-toggle__glow {
+  animation: music-shadow-pulse 1.3s ease-in-out infinite;
+}
+
+.music-toggle.is-playing .music-toggle__icon {
+  animation: music-note-bounce 0.9s ease-in-out infinite;
+}
+
+@keyframes music-shadow-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes music-note-bounce {
+  0%,
+  100% {
+    transform: translateY(-0.5px);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
 }
 
 .hero {
@@ -517,7 +603,10 @@
   }
 
   .page-loader__ring,
-  .page-loader__heart {
+  .page-loader__heart,
+  .music-toggle.is-playing,
+  .music-toggle.is-playing .music-toggle__glow,
+  .music-toggle.is-playing .music-toggle__icon {
     animation: none;
   }
 }
