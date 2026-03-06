@@ -33,12 +33,12 @@ export const invitationData = {
       {
         name: 'Silvia Roncal',
         phone: '967 286 406',
-        href: 'https://wa.me/51967286406?text=Confirmo%20mi%20asistencia.',
+        href: 'https://wa.link/42ugnz',
       },
       {
         name: 'Diana Pereira',
         phone: '987 047 701',
-        href: 'https://wa.me/51987047701?text=Confirmo%20mi%20asistencia.',
+        href: 'https://wa.link/8ca3zt',
       },
     ],
   },
