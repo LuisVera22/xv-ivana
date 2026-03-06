@@ -6,22 +6,22 @@
 
 :root {
   --layout-max: 420px;
-  --fs-event-date: clamp(14px, 2.2vw, 18px);
-  --fs-name: clamp(58px, 10vw, 92px);
-  --fs-message: clamp(8px, 1.4vw, 12px);
+  --fs-event-date: clamp(18.2px, 2.86vw, 23.4px);
+  --fs-name: clamp(75.4px, 13vw, 119.6px);
+  --fs-message: clamp(10.4px, 1.82vw, 15.6px);
   --name-block-width: clamp(210px, 34vw, 320px);
-  --message-block-width: clamp(170px, 30vw, 280px);
-  --fs-section-title: clamp(14px, 2.1vw, 20px);
+  --message-block-width: clamp(220px, 30vw, 360px);
+  --fs-section-title: clamp(18.2px, 2.73vw, 26px);
   --hero-ornament-width: var(--name-block-width);
-  --fs-countdown: clamp(30px, 7vw, 56px);
-  --fs-venue: clamp(10px, 1.8vw, 14px);
-  --fs-address: clamp(7px, 1.2vw, 10px);
-  --fs-rsvp-title: clamp(14px, 2.1vw, 20px);
-  --fs-contact-name: clamp(11px, 1.9vw, 14px);
-  --fs-contact-phone: clamp(8px, 1.4vw, 11px);
-  --fs-dress-title: clamp(14px, 2.1vw, 20px);
-  --fs-dress-label: clamp(11px, 1.8vw, 15px);
-  --fs-dress-note: clamp(8px, 1.2vw, 10px);
+  --fs-countdown: clamp(39px, 9.1vw, 72.8px);
+  --fs-venue: clamp(13px, 2.34vw, 18.2px);
+  --fs-address: clamp(9.1px, 1.56vw, 13px);
+  --fs-rsvp-title: clamp(18.2px, 2.73vw, 26px);
+  --fs-contact-name: clamp(14.3px, 2.47vw, 18.2px);
+  --fs-contact-phone: clamp(10.4px, 1.82vw, 14.3px);
+  --fs-dress-title: clamp(18.2px, 2.73vw, 26px);
+  --fs-dress-label: clamp(14.3px, 2.34vw, 19.5px);
+  --fs-dress-note: clamp(10.4px, 1.56vw, 13px);
   --lh-tight: 1;
   --lh-compact: ;
   --lh-body: 1.35;
@@ -284,9 +284,9 @@
 }
 
 .parents {
-  margin: 0.5rem 0 0.42rem;
+  margin: 1rem 0 1rem;
   font-family: 'Italianno', cursive;
-  font-size: clamp(22px, 3.7vw, 33px);
+  font-size: clamp(28.6px, 4.81vw, 42.9px);
   line-height: 0.86;
   color: #f1eee7;
   text-shadow: 0 4px 14px rgba(0, 0, 0, 0.62);
@@ -360,7 +360,7 @@
 .countdown-label {
   margin-top: 0.15rem;
   font-family: 'Alegreya', serif;
-  font-size: clamp(12px, 1.8vw, 16px);
+  font-size: clamp(15.6px, 2.34vw, 20.8px);
   line-height: 1;
   color: #ffffff;
 }
@@ -564,8 +564,8 @@
 }
 
 .whatsapp-icon {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   color: #f2f2f2;
   flex-shrink: 0;
 }
