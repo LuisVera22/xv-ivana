@@ -12,6 +12,13 @@ export const invitationData = {
     title: 'FALTAN',
     targetDate: '2026-04-24T20:00:00-05:00',
   },
+  eventSchedule: {
+    month: 'Abril',
+    weekday: 'Sabado',
+    day: '25',
+    time: '8:00 P.m.',
+    year: '2026',
+  },
   location: {
     title: 'UBICACIÓN',
     venue: 'Círculo Militar de Salaverry - Jesús María',

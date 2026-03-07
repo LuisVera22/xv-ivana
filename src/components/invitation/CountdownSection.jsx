@@ -1,3 +1,5 @@
+import { SectionTitle } from './SectionTitle'
+
 export function CountdownSection({ title, timeLeft }) {
   const items = [
     { value: timeLeft.days, label: 'dias' },
@@ -8,7 +10,7 @@ export function CountdownSection({ title, timeLeft }) {
 
   return (
     <section className="countdown-section" aria-label="Cuenta regresiva">
-      <p className="section-title">{title}</p>
+      <p>{title}</p>
       <div className="countdown" role="timer" aria-live="polite">
         {items.map((item) => (
           <div className="countdown-item" key={item.label}>

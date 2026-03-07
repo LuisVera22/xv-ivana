@@ -1,7 +1,9 @@
+import { SectionTitle } from './SectionTitle'
+
 export function DressCodeSection({ title, labels, forbidden }) {
   return (
     <section className="dress-section" aria-label="Dress code">
-      <h2>{title}</h2>
+      <SectionTitle className="section-heading--dress">{title}</SectionTitle>
 
       <div className="dress-row">
         <p>{labels.ladies}</p>

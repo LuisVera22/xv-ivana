@@ -1,3 +1,5 @@
+import { SectionTitle } from './SectionTitle'
+
 function WhatsAppIcon() {
   return (
     <svg
@@ -17,7 +19,7 @@ function WhatsAppIcon() {
 export function RsvpSection({ title, contacts }) {
   return (
     <section className="rsvp-section" aria-label="Confirmar asistencia">
-      <h2>{title}</h2>
+      <SectionTitle className="section-heading--light">{title}</SectionTitle>
       <div className="contacts">
         {contacts.map((contact) => (
           <a

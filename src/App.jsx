@@ -3,6 +3,7 @@ import { invitationData } from './data/invitationData'
 import { useCountdown } from './hooks/useCountdown'
 import { CountdownSection } from './components/invitation/CountdownSection'
 import { DressCodeSection } from './components/invitation/DressCodeSection'
+import { EventDateSection } from './components/invitation/EventDateSection'
 import { HeroSection } from './components/invitation/HeroSection'
 import { LocationSection } from './components/invitation/LocationSection'
 import { RsvpSection } from './components/invitation/RsvpSection'
@@ -162,6 +163,13 @@ function App() {
             message={invitationData.event.message}
             parents={invitationData.event.parents}
             secondMessage={invitationData.event.secondMessage}
+          />
+          <EventDateSection
+            month={invitationData.eventSchedule.month}
+            weekday={invitationData.eventSchedule.weekday}
+            day={invitationData.eventSchedule.day}
+            time={invitationData.eventSchedule.time}
+            year={invitationData.eventSchedule.year}
           />
           <CountdownSection title={invitationData.countdown.title} timeLeft={timeLeft} />
           <LocationSection
