@@ -919,7 +919,7 @@
 
   .rsvp-section {
     min-height: 255px;
-    padding-top: 6.8rem;
+    padding-top: clamp(0.75rem, 12vw, 1.2rem);
   }
 
   .contacts {
