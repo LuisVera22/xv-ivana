@@ -6,7 +6,7 @@ export const invitationData = {
       'Este día refleja la alegría que nuestra hija ha traído a nuestras vidas; gracias por compartirlo.',
     parents: 'Silvia Roncal & José Iván Pereira',
     secondMessage:
-      'Este día refleja la alegría que nuestra hija ha traído a nuestras vidas; gracias por compartirlo.',
+      'Tienen el agrado de invitarle  a esta noche mágica, el día:',
   },
   countdown: {
     title: 'FALTAN',
