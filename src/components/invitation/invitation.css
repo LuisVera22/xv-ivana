@@ -489,7 +489,7 @@
 
 .event-date-section {
   text-align: center;
-  padding: 0 1.2rem 1rem;
+  padding: 1rem 1.2rem 1rem;
   margin-top: -0.25rem;
 }
 
@@ -497,7 +497,7 @@
 .event-date-section__weekday,
 .event-date-section__time,
 .event-date-section__year {
-  margin: 0;
+  margin: -0.5rem 0 -0.15rem 0;
   font-family: 'Allura', cursive;
   color: #f1eee7;
   line-height: 0.9;
@@ -506,12 +506,13 @@
 
 .event-date-section__month {
   font-size: var(--fs-schedule-month);
+  margin-bottom: -1rem;
 }
 
 .event-date-section__ornament {
   display: grid;
   place-items: center;
-  margin-top: clamp(2px, 0.5vw, 6px);
+  margin-top: clamp(0.5px, 0.2vw, 2px);
 }
 
 .event-date-section__line {
@@ -521,15 +522,18 @@
 }
 
 .event-date-section__main {
-  margin: 0.12rem auto 0.15rem;
-  display: flex;
-  justify-content: center;
+  margin: 0.03rem auto 0.04rem;
+  width: min(100%, 520px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: baseline;
-  gap: clamp(14px, 3vw, 28px);
+  gap: clamp(10px, 2.1vw, 20px);
 }
 
 .event-date-section__weekday {
   font-size: var(--fs-schedule-weekday);
+  justify-self: end;
+  text-align: right;
 }
 
 .event-date-section__day {
@@ -544,11 +548,13 @@
 
 .event-date-section__time {
   font-size: var(--fs-schedule-time);
+  justify-self: start;
+  text-align: left;
 }
 
 .event-date-section__ornament--bottom {
   transform: scaleY(-1);
-  margin-top: clamp(1px, 0.4vw, 4px);
+  margin-top: clamp(0px, 0.1vw, 1px);
 }
 
 .event-date-section__year {
