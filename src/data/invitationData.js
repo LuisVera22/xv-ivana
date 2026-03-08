@@ -14,7 +14,7 @@ export const invitationData = {
   },
   eventSchedule: {
     month: 'Abril',
-    weekday: 'Sabado',
+    weekday: 'Sábado',
     day: '25',
     time: '8:00 P.m.',
     year: '2026',

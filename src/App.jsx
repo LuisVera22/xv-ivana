@@ -254,7 +254,7 @@ function App() {
       {!hasStartedInvitation && (
         <main className="invite-page invite-page--entry">
           <section className={`invite-entry-card ${isEntryClosing ? 'is-closing' : ''}`} aria-label="Eleccion de musica">
-            <p className="invite-entry-card__eyebrow">Bienvenidos a la invitacion de</p>
+            <p className="invite-entry-card__eyebrow">Bienvenidos a la invitación de</p>
             <div className="invite-entry-card__name-block" aria-hidden="true">
               <div className="invite-entry-card__ornament invite-entry-card__ornament--top">
                 <span className="invite-entry-card__ornament-piece" />
@@ -268,7 +268,7 @@ function App() {
                 <span className="invite-entry-card__ornament-piece invite-entry-card__ornament-piece--mirror" />
               </div>
             </div>
-            <p className="invite-entry-card__subtitle">La musica de fondo es parte de la experiencia</p>
+            <p className="invite-entry-card__subtitle">La música de fondo es parte de la experiencia</p>
             <div className="invite-entry-card__actions">
               <button
                 type="button"
@@ -276,7 +276,7 @@ function App() {
                 onClick={() => handleStartInvitation(true)}
                 disabled={isEntryClosing}
               >
-                Ingresar con musica
+                Ingresar con música
               </button>
               <button
                 type="button"
@@ -284,7 +284,7 @@ function App() {
                 onClick={() => handleStartInvitation(false)}
                 disabled={isEntryClosing}
               >
-                Ingresar sin musica
+                Ingresar sin música
               </button>
             </div>
           </section>
