@@ -19,6 +19,16 @@ function WhatsAppIcon() {
 export function RsvpSection({ title, contacts }) {
   return (
     <section className="rsvp-section" aria-label="Confirmar asistencia" data-reveal style={{ '--reveal-delay': '0ms' }}>
+      <div className="rsvp-gift" data-reveal style={{ '--reveal-delay': '20ms' }}>
+        <p className="rsvp-gift__title">REGALO</p>
+        <img
+          className="rsvp-gift__icon"
+          src="/icons/ic-regalo.png"
+          alt="Icono de regalo"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       <SectionTitle className="section-heading--light" data-reveal style={{ '--reveal-delay': '40ms' }}>
         {title}
       </SectionTitle>

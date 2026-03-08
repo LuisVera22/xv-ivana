@@ -12,11 +12,25 @@ export function DressCodeSection({ title, labels, forbidden }) {
         <p className="dress-forbidden">{forbidden}</p>
         <p>{labels.gentlemen}</p>
       </div>
-      <div className="dress-not-allowed" aria-label={forbidden} data-reveal style={{ '--reveal-delay': '150ms' }}>
+      <div className="dress-icons-row" data-reveal style={{ '--reveal-delay': '150ms' }}>
+        <img
+          className="dress-icon"
+          src="/icons/ic-tacon.png"
+          alt="Icono de tacon para damas"
+          loading="lazy"
+          decoding="async"
+        />
         <div className="dress-swatches" aria-hidden="true">
           <span className="swatch-gold" />
           <span className="swatch-black" />
         </div>
+        <img
+          className="dress-icon"
+          src="/icons/ic-corbata.png"
+          alt="Icono de corbata para caballeros"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </section>
   )
