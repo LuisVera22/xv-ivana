@@ -855,10 +855,10 @@
 }
 
 .contacts {
-  margin-top: 0.95rem;
+  margin: -0.75rem 0 2rem;
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2.75rem;
 }
 
 .contact-item {
