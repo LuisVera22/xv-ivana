@@ -266,8 +266,8 @@
 }
 
 .invite-entry-card__button {
-  width: clamp(160px, 36vw, 220px);
-  min-height: clamp(30px, 6.2vw, 55px);
+  width: clamp(200px, 36vw, 220px);
+  min-height: clamp(50px, 6.2vw, 55px);
   border-radius: 14px;
   font-family: 'Alegreya', serif;
   font-size: clamp(14px, 4.6vw, 20px);
