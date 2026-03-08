@@ -196,7 +196,7 @@ function App() {
 
       <audio
         ref={audioRef}
-        src="/music/André Rieu - The Second Waltz (Classic Album Selection [5CD]).mp3"
+        src="/music/Taylor Swift - Enchanted.mp3"
         onPlay={handleMusicPlay}
         onPause={handleMusicPause}
         onEnded={handleMusicEnded}
