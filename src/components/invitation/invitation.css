@@ -107,8 +107,130 @@
   background: #1b1b1b;
 }
 
+.invite-page--entry {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  justify-content: center;
+  background: #000000;
+}
+
+.invite-page--invitation {
+  transition: opacity 200ms ease;
+}
+
+.invite-page--preloading {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
 .invite-page > section {
   margin: 0;
+}
+
+.invite-entry-card {
+  width: min(100%, 760px);
+  padding: clamp(2.1rem, 5vw, 3.6rem) clamp(1rem, 4vw, 2.4rem);
+  text-align: center;
+  color: #efe9d8;
+  background: #000000;
+}
+
+.invite-entry-card__eyebrow {
+  margin: 0;
+  font-family: 'Alegreya', serif;
+  font-size: clamp(16px, 4.6vw, 24px);
+  font-weight: 400;
+  line-height: 1.05;
+  color: #f1eee7;
+}
+
+.invite-entry-card__name-block {
+  margin-top: clamp(0.8rem, 2.1vw, 1.15rem);
+}
+
+.invite-entry-card__ornament {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(9px, 1.6vw, 14px);
+}
+
+.invite-entry-card__ornament-piece {
+  width: clamp(110px, 18vw, 162px);
+  aspect-ratio: 347 / 70;
+  background: url('/img/name-ornament.svg') center / contain no-repeat;
+}
+
+.invite-entry-card__ornament-piece--mirror {
+  transform: scaleX(-1);
+}
+
+.invite-entry-card__ornament--bottom {
+  transform: scaleX(-1);
+}
+
+.invite-entry-card__title {
+  margin: 0;
+  margin-top: clamp(0.65rem, 1.6vw, 0.95rem);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(32px, 10vw, 46px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  color: #f1eee7;
+}
+
+.invite-entry-card__subtitle {
+  margin: clamp(3.75rem, 2.4vw, 1.85rem) 0 0;
+  font-family: 'Alegreya', serif;
+  font-size: clamp(14px, 4.6vw, 20px);
+  font-weight: 400;
+  color: rgba(241, 236, 226, 0.88);
+}
+
+.invite-entry-card__actions {
+  margin-top: clamp(1rem, 2.1vw, 1.6rem);
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.55rem, 1.5vw, 1rem);
+  flex-wrap: wrap;
+}
+
+.invite-entry-card__button {
+  width: clamp(160px, 36vw, 220px);
+  min-height: clamp(30px, 6.2vw, 55px);
+  border-radius: 14px;
+  font-family: 'Alegreya', serif;
+  font-size: clamp(14px, 4.6vw, 20px);
+  font-weight: 400;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+.invite-entry-card__button--music {
+  color: #1a1a1a;
+  background: #f1f1f1;
+}
+
+.invite-entry-card__button--silent {
+  color: #1a1a1a;
+  background: #f1f1f1;
+  border-color: transparent;
+}
+
+.invite-entry-card__button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.invite-entry-card__button:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
 }
 
 .invite-card {

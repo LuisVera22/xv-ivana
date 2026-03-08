@@ -13,6 +13,7 @@ function App() {
   const [showLoader, setShowLoader] = useState(true)
   const [loaderVisible, setLoaderVisible] = useState(true)
   const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+  const [hasStartedInvitation, setHasStartedInvitation] = useState(false)
   const audioRef = useRef(null)
   const timeLeft = useCountdown(invitationData.countdown.targetDate)
 
@@ -61,25 +62,6 @@ function App() {
     }
   }, [])
 
-  useEffect(() => {
-    const audioElement = audioRef.current
-
-    if (!audioElement) {
-      return
-    }
-
-    const tryAutoplay = async () => {
-      try {
-        await audioElement.play()
-        setIsMusicPlaying(true)
-      } catch {
-        setIsMusicPlaying(false)
-      }
-    }
-
-    tryAutoplay()
-  }, [])
-
   const handleMusicToggle = async () => {
     const audioElement = audioRef.current
 
@@ -112,6 +94,27 @@ function App() {
     setIsMusicPlaying(false)
   }
 
+  const handleStartInvitation = async (playWithMusic) => {
+    const audioElement = audioRef.current
+
+    if (audioElement) {
+      if (playWithMusic) {
+        try {
+          await audioElement.play()
+          setIsMusicPlaying(true)
+        } catch {
+          setIsMusicPlaying(false)
+        }
+      } else {
+        audioElement.pause()
+        audioElement.currentTime = 0
+        setIsMusicPlaying(false)
+      }
+    }
+
+    setHasStartedInvitation(true)
+  }
+
   return (
     <>
       {showLoader && (
@@ -135,7 +138,20 @@ function App() {
         </div>
       )}
 
-      <main className="invite-page">
+      <audio
+        ref={audioRef}
+        src="/music/André Rieu - The Second Waltz (Classic Album Selection [5CD]).mp3"
+        onPlay={handleMusicPlay}
+        onPause={handleMusicPause}
+        onEnded={handleMusicEnded}
+        preload="metadata"
+        loop
+      />
+
+      <main
+        className={`invite-page invite-page--invitation ${hasStartedInvitation ? '' : 'invite-page--preloading'}`.trim()}
+        aria-hidden={!hasStartedInvitation}
+      >
         <section className="invite-card" aria-label="Invitacion de quinceanero">
           <button
             type="button"
@@ -147,16 +163,6 @@ function App() {
             <span className="music-toggle__glow" aria-hidden="true" />
             <span className="music-toggle__icon" aria-hidden="true">&#9835;</span>
           </button>
-          <audio
-            ref={audioRef}
-            src="/music/Tusa (LetraLyrics) - Karol G, Nicki Minaj.mp3"
-            onPlay={handleMusicPlay}
-            onPause={handleMusicPause}
-            onEnded={handleMusicEnded}
-            preload="metadata"
-            loop
-            autoPlay
-          />
           <HeroSection
             date={invitationData.event.dateDisplay}
             name={invitationData.event.name}
@@ -188,6 +194,44 @@ function App() {
 
         <RsvpSection title={invitationData.rsvp.title} contacts={invitationData.rsvp.contacts} />
       </main>
+
+      {!hasStartedInvitation && (
+        <main className="invite-page invite-page--entry">
+          <section className="invite-entry-card" aria-label="Eleccion de musica">
+            <p className="invite-entry-card__eyebrow">Bienvenidos a la invitacion de</p>
+            <div className="invite-entry-card__name-block" aria-hidden="true">
+              <div className="invite-entry-card__ornament invite-entry-card__ornament--top">
+                <span className="invite-entry-card__ornament-piece" />
+                <span className="invite-entry-card__ornament-piece invite-entry-card__ornament-piece--mirror" />
+              </div>
+            </div>
+            <h2 className="invite-entry-card__title">{invitationData.event.name.toUpperCase()}</h2>
+            <div className="invite-entry-card__name-block" aria-hidden="true">
+              <div className="invite-entry-card__ornament invite-entry-card__ornament--bottom">
+                <span className="invite-entry-card__ornament-piece" />
+                <span className="invite-entry-card__ornament-piece invite-entry-card__ornament-piece--mirror" />
+              </div>
+            </div>
+            <p className="invite-entry-card__subtitle">La musica de fondo es parte de la experiencia</p>
+            <div className="invite-entry-card__actions">
+              <button
+                type="button"
+                className="invite-entry-card__button invite-entry-card__button--music"
+                onClick={() => handleStartInvitation(true)}
+              >
+                Ingresar con musica
+              </button>
+              <button
+                type="button"
+                className="invite-entry-card__button invite-entry-card__button--silent"
+                onClick={() => handleStartInvitation(false)}
+              >
+                Ingresar sin musica
+              </button>
+            </div>
+          </section>
+        </main>
+      )}
     </>
   )
 }
