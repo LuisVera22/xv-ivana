@@ -18,16 +18,20 @@ function WhatsAppIcon() {
 
 export function RsvpSection({ title, contacts }) {
   return (
-    <section className="rsvp-section" aria-label="Confirmar asistencia">
-      <SectionTitle className="section-heading--light">{title}</SectionTitle>
+    <section className="rsvp-section" aria-label="Confirmar asistencia" data-reveal style={{ '--reveal-delay': '0ms' }}>
+      <SectionTitle className="section-heading--light" data-reveal style={{ '--reveal-delay': '40ms' }}>
+        {title}
+      </SectionTitle>
       <div className="contacts">
-        {contacts.map((contact) => (
+        {contacts.map((contact, index) => (
           <a
             className="contact-item contact-link"
             key={contact.phone}
             href={contact.href}
             target="_blank"
             rel="noopener noreferrer"
+            data-reveal
+            style={{ '--reveal-delay': `${100 + index * 60}ms` }}
           >
             <WhatsAppIcon />
             <p>

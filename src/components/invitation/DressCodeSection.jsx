@@ -2,15 +2,17 @@ import { SectionTitle } from './SectionTitle'
 
 export function DressCodeSection({ title, labels, forbidden }) {
   return (
-    <section className="dress-section" aria-label="Dress code">
-      <SectionTitle className="section-heading--dress">{title}</SectionTitle>
+    <section className="dress-section" aria-label="Dress code" data-reveal style={{ '--reveal-delay': '0ms' }}>
+      <SectionTitle className="section-heading--dress" data-reveal style={{ '--reveal-delay': '40ms' }}>
+        {title}
+      </SectionTitle>
 
-      <div className="dress-row">
+      <div className="dress-row" data-reveal style={{ '--reveal-delay': '100ms' }}>
         <p>{labels.ladies}</p>
         <p className="dress-forbidden">{forbidden}</p>
         <p>{labels.gentlemen}</p>
       </div>
-      <div className="dress-not-allowed" aria-label={forbidden}>
+      <div className="dress-not-allowed" aria-label={forbidden} data-reveal style={{ '--reveal-delay': '150ms' }}>
         <div className="dress-swatches" aria-hidden="true">
           <span className="swatch-gold" />
           <span className="swatch-black" />

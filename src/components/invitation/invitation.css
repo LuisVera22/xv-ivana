@@ -31,6 +31,7 @@
   --lh-body: 1.35;
   --ornament-start: #d4af37;
   --ornament-end: #b8860b;
+  --music-beat: 1.43s;
 }
 
 .page-loader {
@@ -132,12 +133,47 @@
   margin: 0;
 }
 
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.invite-page--invitation.music-on .name-ornament,
+.invite-page--invitation.music-on .event-date-section__line {
+  animation: invite-ornament-beat var(--music-beat) ease-in-out infinite;
+}
+
+@keyframes invite-ornament-beat {
+  0%,
+  100% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 0 rgba(212, 175, 55, 0));
+  }
+
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.28));
+  }
+}
+
 .invite-entry-card {
   width: min(100%, 760px);
   padding: clamp(2.1rem, 5vw, 3.6rem) clamp(1rem, 4vw, 2.4rem);
   text-align: center;
   color: #efe9d8;
   background: #000000;
+  animation: invite-entry-block-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
 }
 
 .invite-entry-card__eyebrow {
@@ -191,6 +227,34 @@
   font-size: clamp(14px, 4.6vw, 20px);
   font-weight: 400;
   color: rgba(241, 236, 226, 0.88);
+}
+
+.invite-entry-card.is-closing {
+  animation: invite-entry-block-out 360ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+@keyframes invite-entry-block-in {
+  from {
+    opacity: 0;
+    transform: translateY(-34px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes invite-entry-block-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-34px);
+  }
 }
 
 .invite-entry-card__actions {
@@ -496,10 +560,16 @@
   padding: 1.6rem 1.2rem 1.15rem;
 }
 
-.countdown-section p {
+.countdown-title-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.countdown-title {
+  margin: 0;
+  margin-bottom: -1rem;
   font-size: 24px;
   color: #ffffff;
-  margin-bottom: -1rem;
 }
 
 .section-heading {
@@ -562,6 +632,8 @@
   font-size: var(--fs-countdown);
   line-height: var(--lh-tight);
   color: #ffffff;
+  animation: countdown-value-tick 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity, text-shadow;
 }
 
 .countdown-label {
@@ -569,6 +641,20 @@
   font-size: clamp(15.6px, 2.34vw, 20.8px);
   line-height: 1;
   color: #ffffff;
+}
+
+@keyframes countdown-value-tick {
+  from {
+    opacity: 0.45;
+    transform: translateY(8px);
+    text-shadow: 0 0 0 rgba(212, 175, 55, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+  }
 }
 
 .countdown-section::after {
@@ -807,10 +893,24 @@
 
   .page-loader__ring,
   .page-loader__heart,
+  [data-reveal],
+  [data-reveal].is-revealed,
+  .countdown-value,
+  .name-ornament,
+  .event-date-section__line,
   .music-toggle.is-playing,
   .music-toggle.is-playing .music-toggle__glow,
-  .music-toggle.is-playing .music-toggle__icon {
+  .music-toggle.is-playing .music-toggle__icon,
+  .invite-entry-card,
+  .invite-entry-card.is-closing {
     animation: none;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
   }
 }
 

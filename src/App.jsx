@@ -14,7 +14,9 @@ function App() {
   const [loaderVisible, setLoaderVisible] = useState(true)
   const [isMusicPlaying, setIsMusicPlaying] = useState(false)
   const [hasStartedInvitation, setHasStartedInvitation] = useState(false)
+  const [isEntryClosing, setIsEntryClosing] = useState(false)
   const audioRef = useRef(null)
+  const entryExitTimerRef = useRef(null)
   const timeLeft = useCountdown(invitationData.countdown.targetDate)
 
   useEffect(() => {
@@ -95,6 +97,10 @@ function App() {
   }
 
   const handleStartInvitation = async (playWithMusic) => {
+    if (isEntryClosing) {
+      return
+    }
+
     const audioElement = audioRef.current
 
     if (audioElement) {
@@ -112,8 +118,58 @@ function App() {
       }
     }
 
-    setHasStartedInvitation(true)
+    setIsEntryClosing(true)
+    entryExitTimerRef.current = window.setTimeout(() => {
+      setHasStartedInvitation(true)
+      setIsEntryClosing(false)
+    }, 360)
   }
+
+  useEffect(() => {
+    return () => {
+      if (entryExitTimerRef.current) {
+        window.clearTimeout(entryExitTimerRef.current)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!hasStartedInvitation) {
+      return
+    }
+
+    const revealItems = Array.from(document.querySelectorAll('[data-reveal]'))
+
+    if (!revealItems.length) {
+      return
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      revealItems.forEach((item) => item.classList.add('is-revealed'))
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed')
+            return
+          }
+
+          entry.target.classList.remove('is-revealed')
+        })
+      },
+      {
+        threshold: 0.05,
+        rootMargin: '0px 0px 12% 0px',
+      }
+    )
+
+    revealItems.forEach((item) => observer.observe(item))
+
+    return () => observer.disconnect()
+  }, [hasStartedInvitation])
 
   return (
     <>
@@ -149,7 +205,7 @@ function App() {
       />
 
       <main
-        className={`invite-page invite-page--invitation ${hasStartedInvitation ? '' : 'invite-page--preloading'}`.trim()}
+        className={`invite-page invite-page--invitation ${hasStartedInvitation ? '' : 'invite-page--preloading'} ${isMusicPlaying ? 'music-on' : 'music-off'}`.trim()}
         aria-hidden={!hasStartedInvitation}
       >
         <section className="invite-card" aria-label="Invitacion de quinceanero">
@@ -197,7 +253,7 @@ function App() {
 
       {!hasStartedInvitation && (
         <main className="invite-page invite-page--entry">
-          <section className="invite-entry-card" aria-label="Eleccion de musica">
+          <section className={`invite-entry-card ${isEntryClosing ? 'is-closing' : ''}`} aria-label="Eleccion de musica">
             <p className="invite-entry-card__eyebrow">Bienvenidos a la invitacion de</p>
             <div className="invite-entry-card__name-block" aria-hidden="true">
               <div className="invite-entry-card__ornament invite-entry-card__ornament--top">
@@ -218,6 +274,7 @@ function App() {
                 type="button"
                 className="invite-entry-card__button invite-entry-card__button--music"
                 onClick={() => handleStartInvitation(true)}
+                disabled={isEntryClosing}
               >
                 Ingresar con musica
               </button>
@@ -225,6 +282,7 @@ function App() {
                 type="button"
                 className="invite-entry-card__button invite-entry-card__button--silent"
                 onClick={() => handleStartInvitation(false)}
+                disabled={isEntryClosing}
               >
                 Ingresar sin musica
               </button>

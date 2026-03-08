@@ -280,11 +280,11 @@ function OrnamentLine({ className = "" }) {
   );
 }
 
-export function SectionTitle({ as: Tag = "h2", className = "", children }) {
+export function SectionTitle({ as: Tag = "h2", className = "", children, ...rest }) {
   const classes = `section-heading ${className}`.trim();
 
   return (
-    <Tag className={classes}>
+    <Tag className={classes} {...rest}>
       <OrnamentLine className="section-heading__ornament" />
       <span className="section-heading__text">{children}</span>
       <OrnamentLine className="section-heading__ornament section-heading__ornament--bottom" />
