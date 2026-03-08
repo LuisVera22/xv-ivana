@@ -563,7 +563,7 @@
 
 .countdown-section {
   text-align: center;
-  padding: 1.6rem 1.2rem 1.15rem;
+  padding: 1rem 1.2rem 1.15rem;
 }
 
 .countdown-title-wrap {
@@ -668,7 +668,7 @@
   display: block;
   width: clamp(80px, 15vw, 140px);
   aspect-ratio: 1 / 1;
-  margin: 2rem auto -2rem;
+  margin: -0.5rem auto -1.5rem;
   background: url('/img/mask-2.png') center / contain no-repeat;
 }
 
