@@ -783,14 +783,14 @@
 }
 
 .dress-swatches span {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: inline-block;
 }
 
 .swatch-gold {
-  background: var(--ornament-start);
+  background: url('/img/color-1.png') center / cover no-repeat;
   border: 1px solid rgba(0, 0, 0, 0.18);
 }
 
