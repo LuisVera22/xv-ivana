@@ -404,7 +404,7 @@
 .hero {
   text-align: center;
   padding: 1.8rem 1.5rem 1.2rem;
-  min-height: clamp(320px, 52vw, 420px);
+  min-height: clamp(320px, 52vw, 400px);
   display: flex;
   flex-direction: column;
   justify-content: center;
