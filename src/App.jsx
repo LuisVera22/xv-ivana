@@ -10,13 +10,18 @@ import { RsvpSection } from './components/invitation/RsvpSection'
 import './components/invitation/invitation.css'
 
 function App() {
+  const ENTRY_CONTENT_FADE_MS = 1500
+  const ENTRY_CENTERING_MS = 1000
+  const ENTRY_EXPAND_MS = 2000
   const [showLoader, setShowLoader] = useState(true)
   const [loaderVisible, setLoaderVisible] = useState(true)
   const [isMusicPlaying, setIsMusicPlaying] = useState(false)
   const [hasStartedInvitation, setHasStartedInvitation] = useState(false)
-  const [isEntryClosing, setIsEntryClosing] = useState(false)
+  const [entryPhase, setEntryPhase] = useState('idle')
+  const [entryMaskOrigin, setEntryMaskOrigin] = useState({ x: 0, y: 0 })
   const audioRef = useRef(null)
-  const entryExitTimerRef = useRef(null)
+  const entryMaskRef = useRef(null)
+  const entryPhaseTimerRef = useRef(null)
   const timeLeft = useCountdown(invitationData.countdown.targetDate)
 
   useEffect(() => {
@@ -96,39 +101,60 @@ function App() {
     setIsMusicPlaying(false)
   }
 
-  const handleStartInvitation = async (playWithMusic) => {
-    if (isEntryClosing) {
+  const handleStartInvitation = async () => {
+    if (entryPhase !== 'idle') {
       return
     }
 
-    const audioElement = audioRef.current
-
-    if (audioElement) {
-      if (playWithMusic) {
-        try {
-          await audioElement.play()
-          setIsMusicPlaying(true)
-        } catch {
-          setIsMusicPlaying(false)
-        }
-      } else {
-        audioElement.pause()
-        audioElement.currentTime = 0
-        setIsMusicPlaying(false)
-      }
+    if (entryMaskRef.current) {
+      const rect = entryMaskRef.current.getBoundingClientRect()
+      setEntryMaskOrigin({
+        x: rect.left + rect.width / 2 - window.innerWidth / 2,
+        y: rect.top + rect.height / 2 - window.innerHeight / 2,
+      })
     }
 
-    setIsEntryClosing(true)
-    entryExitTimerRef.current = window.setTimeout(() => {
-      setHasStartedInvitation(true)
-      setIsEntryClosing(false)
-    }, 360)
+    await handleMusicToggle()
+    setEntryPhase('fade')
   }
 
   useEffect(() => {
+    if (entryPhase === 'idle') {
+      return
+    }
+
+    const phaseDurations = {
+      fade: ENTRY_CONTENT_FADE_MS,
+      center: ENTRY_CENTERING_MS,
+      expand: ENTRY_EXPAND_MS,
+    }
+
+    entryPhaseTimerRef.current = window.setTimeout(() => {
+      if (entryPhase === 'fade') {
+        setEntryPhase('center')
+        return
+      }
+
+      if (entryPhase === 'center') {
+        setEntryPhase('expand')
+        return
+      }
+
+      setHasStartedInvitation(true)
+      setEntryPhase('idle')
+    }, phaseDurations[entryPhase])
+
     return () => {
-      if (entryExitTimerRef.current) {
-        window.clearTimeout(entryExitTimerRef.current)
+      if (entryPhaseTimerRef.current) {
+        window.clearTimeout(entryPhaseTimerRef.current)
+      }
+    }
+  }, [entryPhase])
+
+  useEffect(() => {
+    return () => {
+      if (entryPhaseTimerRef.current) {
+        window.clearTimeout(entryPhaseTimerRef.current)
       }
     }
   }, [])
@@ -217,7 +243,9 @@ function App() {
             aria-label={isMusicPlaying ? 'Pausar musica' : 'Reproducir musica'}
           >
             <span className="music-toggle__glow" aria-hidden="true" />
-            <span className="music-toggle__icon" aria-hidden="true">&#9835;</span>
+            <span className="music-toggle__icon" aria-hidden="true">
+              &#9835;
+            </span>
           </button>
           <HeroSection
             date={invitationData.event.dateDisplay}
@@ -253,41 +281,36 @@ function App() {
 
       {!hasStartedInvitation && (
         <main className="invite-page invite-page--entry">
-          <section className={`invite-entry-card ${isEntryClosing ? 'is-closing' : ''}`} aria-label="Eleccion de musica">
-            <p className="invite-entry-card__eyebrow">Bienvenidos a la invitación de</p>
-            <div className="invite-entry-card__name-block" aria-hidden="true">
-              <div className="invite-entry-card__ornament invite-entry-card__ornament--top">
+          <button
+            type="button"
+            className={`invite-entry-card invite-entry-card--${entryPhase}`}
+            onClick={handleStartInvitation}
+            disabled={entryPhase !== 'idle'}
+            aria-label="Haz click para continuar a la invitacion con musica"
+            style={
+              {
+                '--entry-mask-origin-x': `${entryMaskOrigin.x}px`,
+                '--entry-mask-origin-y': `${entryMaskOrigin.y}px`,
+              }
+            }
+          >
+            <span className="invite-entry-card__eyebrow">Bienvenidos a la invitacion de</span>
+            <span className="invite-entry-card__name-block" aria-hidden="true">
+              <span className="invite-entry-card__ornament invite-entry-card__ornament--top">
                 <span className="invite-entry-card__ornament-piece" />
                 <span className="invite-entry-card__ornament-piece invite-entry-card__ornament-piece--mirror" />
-              </div>
-            </div>
-            <h2 className="invite-entry-card__title">{invitationData.event.name.toUpperCase()}</h2>
-            <div className="invite-entry-card__name-block" aria-hidden="true">
-              <div className="invite-entry-card__ornament invite-entry-card__ornament--bottom">
+              </span>
+            </span>
+            <span className="invite-entry-card__title">{invitationData.event.name.toUpperCase()}</span>
+            <span className="invite-entry-card__name-block" aria-hidden="true">
+              <span className="invite-entry-card__ornament invite-entry-card__ornament--bottom">
                 <span className="invite-entry-card__ornament-piece" />
                 <span className="invite-entry-card__ornament-piece invite-entry-card__ornament-piece--mirror" />
-              </div>
-            </div>
-            <p className="invite-entry-card__subtitle">La música de fondo es parte de la experiencia</p>
-            <div className="invite-entry-card__actions">
-              <button
-                type="button"
-                className="invite-entry-card__button invite-entry-card__button--music"
-                onClick={() => handleStartInvitation(true)}
-                disabled={isEntryClosing}
-              >
-                Ingresar con música
-              </button>
-              <button
-                type="button"
-                className="invite-entry-card__button invite-entry-card__button--silent"
-                onClick={() => handleStartInvitation(false)}
-                disabled={isEntryClosing}
-              >
-                Ingresar sin música
-              </button>
-            </div>
-          </section>
+              </span>
+            </span>
+            <span ref={entryMaskRef} className="invite-entry-card__mask" aria-hidden="true" />
+            <span className="invite-entry-card__hint">haz click para continuar</span>
+          </button>
         </main>
       )}
     </>
